@@ -87,4 +87,6 @@ J7ni11NnCUEe1+GtZcIWoJcKNgzsyN8K8BQBKnDn/1mLPkv2ul1VUcedyoIgZpXcNUKfy3HhZI6soaa5
 
 ## 📖 许可证
 
-[私下研究专用许可](License.txt)
+[想曰](https://github.com/fzxx/XiangYue) - [私下研究专用许可](https://github.com/fzxx/XiangYue?tab=License-1-ov-file#)
+
+[libsodium.js](https://github.com/jedisct1/libsodium.js/) - ISC 许可证
