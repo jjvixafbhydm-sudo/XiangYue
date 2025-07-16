@@ -4,7 +4,7 @@
 
 ## 🌟 特点
 
-- ㊙️**密文**：支持 `中文 / Base64` 密文
+- ㊙️**密文**：支持 `中文 / Base64 / Emoji` 密文
 - 🔐**密钥**：`PBKDF2-SHA256 + HKDF-SHA256`，有效抵御暴力破解
 - 🔒**级联算法**：采用 `AES-CTR` 与 `ChaCha20-Poly1305-IETF` 级联加密，**安全性极高**
 - 📄**数据**：所有操作在本地完成，数据不离开设备
@@ -26,8 +26,8 @@ J7ni11NnCUEe1+GtZcIWoJcKNgzsyN8K8BQBKnDn/1mLPkv2ul1VUcedyoIgZpXcNUKfy3HhZI6soaa5
 
 ## 在线与离线使用
 
-[**想曰**](https://xyue.515188.xyz/)
-[**想说**](https://xshuo.515188.xyz/)（发给朋友，免尴尬）
+[**想曰**](https://xyue.515188.xyz/)	
+[**想说**](https://xshuo.515188.xyz/)（发给朋友，免尴尬）	
 [**离线客户端**](https://github.com/fzxx/XiangYue/releases)（安卓暂时还需要在线使用）
 
 ## 🛡️ 技术细节
@@ -36,7 +36,7 @@ J7ni11NnCUEe1+GtZcIWoJcKNgzsyN8K8BQBKnDn/1mLPkv2ul1VUcedyoIgZpXcNUKfy3HhZI6soaa5
 
 ```plaintext
 明文 → Deflate压缩 → AES-CTR加密 → ChaCha20-Poly1305加密 → Base64编码 → 密文
-                                                            ↳ 映射中文 → 密文
+                                                            ↳ 映射中文/Emoji → 密文
 ```
 
 #### 密钥派生流程
@@ -51,7 +51,7 @@ J7ni11NnCUEe1+GtZcIWoJcKNgzsyN8K8BQBKnDn/1mLPkv2ul1VUcedyoIgZpXcNUKfy3HhZI6soaa5
 #### 数据结构
 
 ```plaintext
-[中文密文/Base64密文]
+[中文、Emoji密文/Base64密文]
     ↳ 映射→解码/解码
              ↳[二进制数据]
                    ↳ 前16字节 → 盐值(Salt)
