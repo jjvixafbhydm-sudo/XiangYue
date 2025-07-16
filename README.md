@@ -20,6 +20,13 @@
 ```plaintext
 J7ni11NnCUEe1+GtZcIWoJcKNgzsyN8K8BQBKnDn/1mLPkv2ul1VUcedyoIgZpXcNUKfy3HhZI6soaa54UcqLtJs52caSPuVo3EBOYvMqYS2
 ```
+```plaintext
+🧕🛕🐱🌉🛐🤴🌄🏸🚆🎇🤴🦈🛸🧭🚡💒🤑🚤🔁🚬💰🍣⛴️🎽🔣😚❣️♻️🍖🧺🚨⛪️🛁📞🍤👦🍊🦘🦀🚅💓🏏🚪☪️😠💲🦊🧭🐠🎻🪣🚢⏲️⏯️😒🗻🧂🚠👻💗🪲🦽🐍🚲⏭️⏸️😍🛖🫐🛫🥓👴🐪👰⏰🏬🍱🤎🧄ℹ️⚾️🉑🚐🕎🐪😜🦖🚭🦐👽🧎🍢🥦🧘🐄🥖🔢🏃🎸🍤♎️🌆🐆🌋🤍☮️🫓🐑
+```
+
+## 在线与离线使用
+
+[想曰](https://xyue.515188.xyz/)      [想说（给怕尴尬的朋友）](https://xshuo.515188.xyz/)      [离线客户端（安卓暂时还需要在线使用）](https://github.com/fzxx/XiangYue/releases)
 
 ## 🛡️ 技术细节
 
@@ -84,6 +91,10 @@ J7ni11NnCUEe1+GtZcIWoJcKNgzsyN8K8BQBKnDn/1mLPkv2ul1VUcedyoIgZpXcNUKfy3HhZI6soaa5
 #### 支持加密/解密的最大容量？
 
 - 不影响速度的情况下，**建议5M以下**（测试支持50M+）；超大的文本请使用压缩包或者其它方式加密。
+
+#### 可以给密文再次加密？
+
+- `明文 → emoji密文 → 中文密文 → ......`  可以这样无限套娃，但不会增加安全性，安全性取决于你的密码，因此不建议这样做。
 
 ## 📖 许可证
 
