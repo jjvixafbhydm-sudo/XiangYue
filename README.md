@@ -1,12 +1,12 @@
 # 想曰
 
-**想曰(yuē)** 是基于现代加密技术的文本加密工具，使用多算法级联加密方案，确保数据在本地完成加密/解密，保护隐私安全。
+**想曰(yuē)** 是基于现代加密技术的文本加密工具，使用**多算法级联加密**方案，确保数据在本地完成加密/解密，保护隐私安全。
 
 ## 🌟 特点
 
 - ㊙️**密文**：支持 `中文 / Base64 / Emoji` 密文
 - 🔐**密钥**：`PBKDF2-SHA256 + HKDF-SHA256`，有效抵御暴力破解
-- 🔒**级联算法**：采用 `AES-CTR` 与 `ChaCha20-Poly1305-IETF` 级联加密，**安全性极高**
+- 🔒**级联算法**：采用 `AES256-CTR` 与 `ChaCha20-Poly1305-IETF` 级联加密，**安全性极高**
 - 📄**数据**：所有操作在本地完成，数据不离开设备
 
 ## 📋密文示例
@@ -24,22 +24,22 @@ J7ni11NnCUEe1+GtZcIWoJcKNgzsyN8K8BQBKnDn/1mLPkv2ul1VUcedyoIgZpXcNUKfy3HhZI6soaa5
 🧕🛕🐱🌉🛐🤴🌄🏸🚆🎇🤴🦈🛸🧭🚡💒🤑🚤🔁🚬💰🍣⛴️🎽🔣😚❣️♻️🍖🧺🚨⛪️🛁📞🍤👦🍊🦘🦀🚅💓🏏🚪☪️😠💲🦊🧭🐠🎻🪣🚢⏲️⏯️😒🗻🧂🚠👻💗🪲🦽🐍🚲⏭️⏸️😍🛖🫐🛫🥓👴🐪👰⏰🏬🍱🤎🧄ℹ️⚾️🉑🚐🕎🐪😜🦖🚭🦐👽🧎🍢🥦🧘🐄🥖🔢🏃🎸🍤♎️🌆🐆🌋🤍☮️🫓🐑
 ```
 
-## 在线与离线使用
+## 🖥️在线与离线使用
 
-[**想曰**](https://xyue.515188.xyz/)	
-[**想说**](https://xshuo.515188.xyz/)（发给朋友，免尴尬）	
-[**离线客户端**](https://github.com/fzxx/XiangYue/releases)（安卓暂时还需要在线使用）
+✅ [**想曰**](https://xyue.515188.xyz/)
+☑️ [**想说**](https://xshuo.515188.xyz/)（发给朋友，免尴尬）
+⛓️‍💥 [**离线客户端**](https://github.com/fzxx/XiangYue/releases)
 
-## 更新日志
+## 🔄️更新日志
 
-[更新日志](https://github.com/fzxx/XiangYue/blob/main/CHANGELOG.md)
+[**更新日志**](https://github.com/fzxx/XiangYue/blob/main/CHANGELOG.md)
 
 ## 🛡️ 技术细节
 
 #### 加密流程
 
 ```plaintext
-明文 → Deflate压缩 → AES-CTR加密 → ChaCha20-Poly1305加密 → Base64编码 → 密文
+明文 → Deflate压缩 → AES256-CTR加密 → ChaCha20-Poly1305加密 → Base64编码 → 密文
                                                             ↳ 映射中文/Emoji → 密文
 ```
 
@@ -78,6 +78,10 @@ J7ni11NnCUEe1+GtZcIWoJcKNgzsyN8K8BQBKnDn/1mLPkv2ul1VUcedyoIgZpXcNUKfy3HhZI6soaa5
 
 ## 😕 疑问
 
+#### 发送给多人如何管理多个密码？
+
+- 使用可靠的密码管理器，例如：**KeePass**、KeePassXC、**Bitwarden**
+
 #### 少量文字也会生成较长的文本，能缩短吗？
 
 - 因为**追求安全性**，所以添加了随机盐、Nonce等参数，密文中存储这些参数导致的；去掉参数**追求短密文会削弱安全性**，所以无短密文计划。
@@ -101,6 +105,10 @@ J7ni11NnCUEe1+GtZcIWoJcKNgzsyN8K8BQBKnDn/1mLPkv2ul1VUcedyoIgZpXcNUKfy3HhZI6soaa5
 #### 可以给密文再次加密？
 
 - `明文 → emoji密文 → 中文密文 → ......`  可以这样无限套娃，但不会增加安全性，安全性取决于你的密码，因此不建议这样做。
+
+#### 经过某些软件发送密文后，解密错误？
+
+- 是因为**某些软件喜欢折叠聊天内容**，建议你检查密文的完整性。
 
 ## 📖 许可证
 
