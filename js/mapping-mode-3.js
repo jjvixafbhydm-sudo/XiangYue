@@ -1,2 +1,43 @@
-const CharSets3={'0':'\u200C','1':'\u200D','2':'\u2060','3':'\u2061','4':'\u2062','5':'\u2063','6':'\u2064','7':'\u206A','8':'\u206B','9':'\u206C','a':'\u206D','b':'\u206E','c':'\u206F','d':'\u034F','e':'\uFEFF','f':'\u061C'};const ReverseCharSets3=Object.fromEntries(Object.entries(CharSets3).map(([k,v])=>[v,k]));const PAD_MARKER='\u200B';const ZERO_WIDTH_CHARS=new Set([...Object.values(CharSets3),PAD_MARKER]);const generateRandomBase64=length=>{const base64Chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';return Array.from({length},()=>base64Chars.charAt(Math.floor(Math.random()*base64Chars.length))).join('');};const mappingMode3={base64ToZeroWidth(str,prefixLength=1,suffixLength=1){if(typeof str!=='string')throw new TypeError('输入必须是字符串');const prefix=generateRandomBase64(prefixLength);const suffix=generateRandomBase64(suffixLength);const hexStr=Array.from(new TextEncoder().encode(str),b=>b.toString(16).padStart(2,'0')).join('');const padBits=(4-(hexStr.length*4%4))%4;const padMarker=CharSets3[(padBits/4).toString(16)];const fullHex=hexStr+'0'.repeat(padBits/4);const zeroWidthStr=fullHex.split('').map(c=>CharSets3[c]).join('');return`${prefix}${zeroWidthStr}${padMarker}${suffix}`;},zeroWidthToBase64(str){if(typeof str!=='string')throw new TypeError('输入必须是字符串');const isZeroWidth=char=>ZERO_WIDTH_CHARS.has(char);let start=0;while(start<str.length&&!isZeroWidth(str[start]))start++;let end=str.length-1;while(end>=0&&!isZeroWidth(str[end]))end--;if(start>end)return str;const coreStr=str.slice(start,end+1);const padMarker=coreStr.at(-1)||'';const validPad=Math.min(Math.max(ReverseCharSets3[padMarker]?parseInt(ReverseCharSets3[padMarker],16)*4:0,0),3);const hexStr=coreStr.slice(0,-1).split('').filter(ch=>ReverseCharSets3.hasOwnProperty(ch)).map(ch=>ReverseCharSets3[ch]).join('');const dataHex=hexStr.slice(0,hexStr.length-(validPad/4));const alignedHex=dataHex.length%2?dataHex.slice(0,dataHex.length-1):dataHex;if(!alignedHex.length)return'';try{const bytes=new Uint8Array(alignedHex.length/2);for(let i=0;i<bytes.length;i++){bytes[i]=parseInt(alignedHex.slice(i*2,(i+1)*2),16);}
-return new TextDecoder().decode(bytes);}catch(error){console.error('零宽密文解码过程出错:',error);return str;}},async encodeBlob(blob,prefixLength=4,suffixLength=4){if(!(blob instanceof Blob))throw new TypeError('输入必须是Blob对象');return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=e=>{try{const base64Str=(e.target.result.split(',')[1]||'');resolve(this.base64ToZeroWidth(base64Str,prefixLength,suffixLength));}catch(error){reject(error);}};reader.onerror=()=>reject(reader.error);reader.readAsDataURL(blob);});},decodeToBlob(str,mimeType='text/plain'){try{const decodedBase64=this.zeroWidthToBase64(str);const byteArray=new Uint8Array(atob(decodedBase64).split('').map(c=>c.charCodeAt(0)));return new Blob([byteArray],{type:mimeType});}catch(error){console.error('Blob解码出错:',error);return new Blob([`零宽字符解密失败: ${error.message}`],{type:'text/plain'});}}};
+const CharSets3={'0':'\u200C','1':'\u200D','2':'\u2060','3':'\u2061','4':'\u2062','5':'\u2063','6':'\u2064','7':'\u206A','8':'\u206B','9':'\u206C','a':'\u206D','b':'\u206E','c':'\u206F','d':'\u034F','e':'\uFEFF','f':'\u061C'};const ReverseCharSets3=Object.fromEntries(Object.entries(CharSets3).map(([k,v])=>[v,k]));const PAD_MARKER='\u200B';const BYTE2ZW=new Array(256);for(let i=0;i<256;i++){BYTE2ZW[i]=CharSets3[(i>>>4).toString(16)]+CharSets3[(i&0x0F).toString(16)];}
+const C4=CharSets3;const BASE64_POOL='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';const randB64=n=>{if(n<=0)return'';const buf=new Uint32Array(n);crypto.getRandomValues(buf);let s='';for(let i=0;i<n;i++)s+=BASE64_POOL[buf[i]&63];return s;};const mappingMode3={base64ToZeroWidth(str,prefixLen=1,suffixLen=1){const bytes=new TextEncoder().encode(str);const zw=new Array(bytes.length);for(let i=0;i<bytes.length;i++)zw[i]=BYTE2ZW[bytes[i]];const padBits=(4-((bytes.length*8)&3))&3;return randB64(prefixLen)+zw.join('')+C4[padBits.toString(16)]+randB64(suffixLen);},zeroWidthToBase64(str){const nib=[];for(const ch of str){const n=parseInt(ReverseCharSets3[ch],16);if(!isNaN(n))nib.push(n);}
+if(nib.length<2)return'';const padBits=nib.pop()*4;const dataBits=nib.length*4-padBits;const byteLen=dataBits>>3;if(byteLen<=0)return'';const bytes=new Uint8Array(byteLen);let buf=0,bits=0,idx=0;for(let i=0;i<nib.length;i++){buf=(buf<<4)|nib[i];bits+=4;if(bits>=8){bytes[idx++]=buf>>>(bits-8);bits-=8;}}
+return new TextDecoder().decode(bytes);},async encodeBlob(blob,prefixLen=4,suffixLen=4,chunkSize=512*1024){if(!(blob instanceof Blob))throw new TypeError('输入必须是Blob对象');const cores=navigator.hardwareConcurrency||4;const tasks=Math.ceil(blob.size/chunkSize);const results=new Array(tasks);let done=0;const workerSrc=`
+
+  const C4 = ${JSON.stringify(CharSets3)};
+
+  const BYTE2ZW = ${JSON.stringify(BYTE2ZW)};
+
+  const BASE64_POOL = '${BASE64_POOL}';
+
+  const rand = n => {
+
+   const buf = new Uint32Array(n);
+
+   crypto.getRandomValues(buf);
+
+   let s = '';
+
+   for (let i = 0; i < n; ++i) s += BASE64_POOL[buf[i] & 63];
+
+   return s;
+
+  };
+
+  onmessage = async ({data}) => {
+
+   const slice = data.blob.slice(data.offset, data.offset + data.chunkSize);
+
+   const bytes = new Uint8Array(await slice.arrayBuffer());
+
+   let zw = '';
+
+   for (let i = 0; i < bytes.length; i++) zw += BYTE2ZW[bytes[i]];
+
+   const padBits = (4 - ((bytes.length * 8) & 3)) & 3;
+
+   postMessage({idx: data.idx, res: rand(data.prefixLen) + zw + C4[padBits.toString(16)] + rand(data.suffixLen)});
+
+  };
+
+  `;const url=URL.createObjectURL(new Blob([workerSrc],{type:'text/javascript'}));return new Promise((resolve,reject)=>{const workers=Array.from({length:cores},()=>new Worker(url));workers.forEach(w=>{w.onmessage=({data})=>{results[data.idx]=data.res;if(++done===tasks){workers.forEach(x=>x.terminate());URL.revokeObjectURL(url);resolve(results.join(''));}};w.onerror=e=>{reject(e);workers.forEach(x=>x.terminate());URL.revokeObjectURL(url);};});for(let i=0;i<Math.min(cores,tasks);i++){workers[i].postMessage({blob,prefixLen,suffixLen,idx:i,offset:i*chunkSize,chunkSize});}});},decodeToBlob(str,mimeType='text/plain'){try{const b64=this.zeroWidthToBase64(str);const bin=atob(b64);const bytes=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);return new Blob([bytes],{type:mimeType});}
+catch{return new Blob(['decode error'],{type:'text/plain'});}},getEmojiLength:s=>[...s].length};
