@@ -4,28 +4,34 @@
 
 ```plaintext
 明文 → 压缩 → AES256-CTR加密 → ChaCha20-Poly1305加密 → Base64编码 → 密文
-                                                         ↳ 映射中文/Emoji/零宽 → 密文
+                                                         ↳ 映射 中文/Emoji/零宽 → 密文
 ```
 
-### 密钥、IV、Nonce派生流程（新旧）
+### 密钥、IV、Nonce派生流程
+
+#### v1.3.0.0以上
 
 ```plaintext
-密码 + Seed(16字节) → 
-     ↳ Argon2id = MasterKey + Seed → HKDF-SHA512
-                                     ↳ 派生AES-CTR密钥(256位)
-                                     ↳ 派生ChaCha20密钥(256位)
-                                     ↳ 派生AES-CTR IV（16字节）
-                                     ↳ 派生ChaCha20 Nonce(12字节)
+密码 + Seed(16字节) → Argon2id 
+                       ↳ MasterKey + Seed → HKDF-SHA512
+                                                ↳ 派生AES-CTR密钥(256位)
+                                                ↳ 派生ChaCha20密钥(256位)
+                                                ↳ 派生AES-CTR IV(16字节)
+                                                ↳ 派生ChaCha20 Nonce(12字节)
 ```
+#### v0.7.0.0 - v1.2.3.0版本
 
 ```plaintext
 密码 + 随机盐(16字节) 
     ↳ PBKDF2-SHA256(50万次迭代) → HKDF-SHA256
                                    ↳ 派生AES-CTR密钥(256位)
                                    ↳ 派生ChaCha20密钥(256位)
+IV(16字节)、Nonce(12字节)，随机
 ```
 
-### 数据结构（新旧）
+### 数据结构
+
+#### v1.3.0.0以上
 
 ```plaintext
 [中文、Emoji、零宽/Base64 密文]
@@ -36,6 +42,8 @@
                                    ↳ 解密 → AES-CTR密文
                                                ↳ 解密 → Deflate-raw解压 → [明文]
 ```
+#### v0.7.0.0 - v1.2.3.0版本
+
 ```plaintext
 [中文、Emoji、零宽/Base64 密文]
      ↳ 映射→解码/解码
