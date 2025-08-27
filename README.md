@@ -1,14 +1,14 @@
 # 想曰
 
 [![GitHub stars](https://img.shields.io/github/stars/fzxx/XiangYue?style=social)](https://github.com/fzxx/XiangYue)   [![GitHub forks](https://img.shields.io/github/forks/fzxx/XiangYue?style=social&logo=github)](https://github.com/fzxx/XiangYue)   [![已关闭 Issues](https://img.shields.io/github/issues-closed/fzxx/XiangYue?label=已解决问题&color=green&logo=github)](https://github.com/fzxx/XiangYue/issues?q=is%3Aissue+is%3Aclosed)   [![许可证](https://img.shields.io/badge/License-私下研究专用许可-blue?logo=github)](https://github.com/fzxx/XiangYue/blob/main/main/License.txt)
-[![级联算法](https://img.shields.io/badge/%E6%96%87%E6%9C%AC%E5%8A%A0%E5%AF%86%E9%A6%96%E4%B8%AA%E7%BA%A7%E8%81%94%E7%AE%97%E6%B3%95%E5%B7%A5%E5%85%B7-AES256%20CTR%20+%20ChaCha20%20Poly1305%20IETF-purple?logo=cryptpad&logoColor=white)](https://github.com/fzxx/XiangYue?tab=readme-ov-file#%EF%B8%8F-%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82)   [![多种密文](https://img.shields.io/badge/%E6%94%AF%E6%8C%81%E5%A4%9A%E7%A7%8D%E5%AF%86%E6%96%87-%E4%B8%AD%E6%96%87/Base64/Emoji/%E9%9B%B6%E5%AE%BD/%E6%97%A5%E8%AF%AD-purple?logo=livechat&logoColor=white)](https://github.com/fzxx/XiangYue?tab=readme-ov-file#-%E7%89%B9%E7%82%B9)
+[![级联算法](https://img.shields.io/badge/%E6%96%87%E6%9C%AC%E5%8A%A0%E5%AF%86%E9%A6%96%E4%B8%AA%E7%BA%A7%E8%81%94%E7%AE%97%E6%B3%95%E5%B7%A5%E5%85%B7-AES256%20CTR%20+%20ChaCha20%20Poly1305%20IETF-purple?logo=cryptpad&logoColor=white)](https://github.com/fzxx/XiangYue?tab=readme-ov-file#%EF%B8%8F-%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82)   [![多种密文](https://img.shields.io/badge/%E6%94%AF%E6%8C%81%E5%A4%9A%E7%A7%8D%E5%AF%86%E6%96%87-%E4%B8%AD%E6%96%87/Base64/Emoji/%E9%9B%B6%E5%AE%BD/%E6%97%A5%E8%AF%AD/%E9%9F%A9%E8%AF%AD-purple?logo=livechat&logoColor=white)](https://github.com/fzxx/XiangYue?tab=readme-ov-file#-%E7%89%B9%E7%82%B9)
 
 <span style="color: Blue;"><strong><a href="https://github.com/fzxx/XiangYue" style="color: inherit;">想曰(yuē)</a></strong></span> 是基于现代加密技术的文本加密工具，使用**多算法级联加密**方案，确保数据在本地完成加密/解密，保护隐私安全。
 
 
 ## 🌟 特点
 
-- ㊙️**密文**：支持 `中文/Base64/Emoji/零宽/日语` 密文
+- ㊙️**密文**：支持 `中文/Base64/Emoji/零宽/日语/韩语` 密文
 - 🔐**密钥**：`Argon2id + HKDF-SHA512`，有效抵御暴力破解
 - 🔒**级联算法**：采用 `AES256-CTR` 与 `ChaCha20-Poly1305-IETF` 级联加密，**安全性极高**
 - 📄**数据**：所有操作在本地完成，数据不离开设备
@@ -43,6 +43,12 @@ J7ni11NnCUEe1+GtZcIWoJcKNgzsyN8K8BQBKnDn/1mLPkv2ul1VUcedyoIgZpXcNUKfy3HhZI6soaa5
 
 ```plaintext
 ヷㇴょわㇿデぞズゆェピゆベナこマびむしヾノざュゝるスしニユダクぷすゾゔうゼダりち〴ㇹぐぁぇヘぷゼぺにづヂボゔㇲこぱミみぼメェだは
+```
+
+##### 韩语密文
+
+```plaintext
+퍼헬팁청쌀빠꽂뭇활현라골띤틀문헬룸로쿠텁완권ㅂ기멎끔해되릎펫닫궉뉴담답폼칼받듀릭맑일친끼죄루디ㄲ집멎블권대안지당톤사혐군즈꼭율한
 ```
 
 ## 🖥️在线与离线使用
@@ -83,7 +89,7 @@ J7ni11NnCUEe1+GtZcIWoJcKNgzsyN8K8BQBKnDn/1mLPkv2ul1VUcedyoIgZpXcNUKfy3HhZI6soaa5
 
 #### 经过某些软件发送密文后，解密错误？
 
-- 是因为**某些软件喜欢折叠聊天内容**，或者发送过长的密文被截断，建议你检查密文的完整性；Eomij密文可能因为不同设备内置的表情不一导致解密错误，零宽密文有被某些平台过滤字符的可能。
+- 是因为**某些软件喜欢折叠聊天内容**，或者发送过长的密文被截断，**安卓系统粘贴板有长度限制**，建议你检查密文的完整性；Eomij密文可能因为不同设备内置的表情不一导致解密错误，零宽密文有被某些平台过滤字符的可能。
 
 #### 零宽密文只有两个字符？可见字符可以自定义？
 

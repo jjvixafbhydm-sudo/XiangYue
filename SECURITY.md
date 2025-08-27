@@ -66,6 +66,9 @@ IV(16字节)、Nonce(12字节)，随机
 | AES-CTR IV     | 16 字节 | 随机种子派生    | 计数器初始值             |
 | ChaCha20 Nonce | 12 字节 | 随机种子派生    | 一次性随机数             |
 
+- 设备需保证安全，无病毒木马、无可疑的窃听软件
+- 包括不限于**不受信任的浏览器、输入法、杀毒软件**
+
 ### 漏洞报告
 
 [![漏洞报告](https://img.shields.io/badge/%E6%BC%8F%E6%B4%9E%E6%8A%A5%E5%91%8A-gold?style=for-the-badge&logo=github&&logoColor=black)](https://github.com/fzxx/XiangYue/issues)
