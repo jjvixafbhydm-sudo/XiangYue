@@ -55,6 +55,8 @@ J7ni11NnCUEe1+GtZcIWoJcKNgzsyN8K8BQBKnDn/1mLPkv2ul1VUcedyoIgZpXcNUKfy3HhZI6soaa5
 
 [![在线页面](https://img.shields.io/badge/在线页面-想曰-yellow?logo=googlechrome&logoColor=white)](https://xyue.515188.xyz/)   [![免尴尬页面](https://img.shields.io/badge/免尴尬页面-想说-green?logo=firefox&logoColor=white)](https://xshuo.515188.xyz/)   [![Release](https://img.shields.io/github/v/release/fzxx/XiangYue?label=离线客户端&color=blue&logo=github)](https://github.com/fzxx/XiangYue/releases)
 
+[![备用页面](https://img.shields.io/badge/备用页面-想曰-yellow?logo=googlechrome&logoColor=white)](https://xiangyue.js.org/)
+
 ## 🔄️更新日志
 
 [![更新日志](https://img.shields.io/badge/更新日志-gold?style=for-the-badge&logo=refinedgithub&logoColor=white)](https://github.com/fzxx/XiangYue/blob/main/CHANGELOG.md)
