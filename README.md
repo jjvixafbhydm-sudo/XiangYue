@@ -55,7 +55,8 @@ J7ni11NnCUEe1+GtZcIWoJcKNgzsyN8K8BQBKnDn/1mLPkv2ul1VUcedyoIgZpXcNUKfy3HhZI6soaa5
 
 [![在线页面](https://img.shields.io/badge/在线页面-想曰-yellow?logo=googlechrome&logoColor=white)](https://xyue.515188.xyz/)   [![免尴尬页面](https://img.shields.io/badge/免尴尬页面-想说-green?logo=firefox&logoColor=white)](https://xshuo.515188.xyz/)   [![Release](https://img.shields.io/github/v/release/fzxx/XiangYue?label=离线客户端&color=blue&logo=github)](https://github.com/fzxx/XiangYue/releases)
 
-[![备用页面](https://img.shields.io/badge/备用页面-想曰-yellow?logo=googlechrome&logoColor=white)](https://xiangyue.js.org/)
+<a href="https://xiangyue.js.org/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/备用页面-想曰-yellow?logo=googlechrome&logoColor=white" alt="备用页面"></a>
+
 
 ## 🔄️更新日志
 
@@ -67,20 +68,18 @@ J7ni11NnCUEe1+GtZcIWoJcKNgzsyN8K8BQBKnDn/1mLPkv2ul1VUcedyoIgZpXcNUKfy3HhZI6soaa5
 
 ## 😕 疑问
 
-#### 发送给多人如何管理多个密码？如何安全地传递密码？
+#### 发送给多人如何管理多个密码？如何安全地传递密码、公钥？
 
 - 使用可靠的密码管理器，例如：**KeePass**、KeePassXC、**Bitwarden**
-- 使用**开源的阅后即焚文档**传递密码，例如：**PrivateBin**、pastebin
+- 使用**开源的阅后即焚文档**传递密码、公钥，例如：**PrivateBin**、pastebin
 
 #### 少量文字也会生成较长的文本，能缩短吗？
 
 - 因为**追求安全性**，所以添加了随机种子、校验标签参数，密文中存储这些参数导致的；去掉参数**追求短密文会削弱安全性**，目前已做到保障安全性的情况下最短了。
 
-#### 感觉加密/解密慢？
+#### 感觉加密/解密慢？支持加密/解密的最大容量？
 
 - 使用**Argon2id算法(慢哈希算法)**的正常现象；Base64模式下，短文本理应1秒内加/解密完成，5M的文本（大约200万字）应3秒左右，这是可以接受的速度。
-
-#### 支持加密/解密的最大容量？
 
 - 不影响速度的情况下，**建议5M以下**（测试支持50M+）；超大的文本请使用压缩包或者其它方式加密。
 
