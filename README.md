@@ -86,7 +86,7 @@ J7ni11NnCUEe1+GtZcIWoJcKNgzsyN8K8BQBKnDn/1mLPkv2ul1VUcedyoIgZpXcNUKfy3HhZI6soaa5
 
 #### 感觉加密/解密慢？支持加密/解密的最大容量？
 
-- 使用**Argon2id算法(慢哈希算法)**的正常现象；Base64模式下，短文本理应1秒内加/解密完成，5M的文本（大约200万字）应3秒左右，**Edge浏览器卡顿**需要关闭增强 Web 安全性（设置 → 隐私、搜索和服务 → 安全性）其它浏览器也可以按设置查看并关闭相应的选项。
+- 使用**Argon2id算法**的正常现象；Base64模式下，短文本理应1秒内加/解密完成，5M的文本（大约200万字）应3秒左右，**Edge浏览器卡顿**需要关闭增强 Web 安全性（设置 → 隐私、搜索和服务 → 安全性）其它浏览器也可以按设置查看并关闭相应的选项。
 
 - 不影响速度的情况下，**建议5M以下**（测试支持50M+）；超大的文本请使用压缩包或者其它方式加密。
 
@@ -115,3 +115,4 @@ J7ni11NnCUEe1+GtZcIWoJcKNgzsyN8K8BQBKnDn/1mLPkv2ul1VUcedyoIgZpXcNUKfy3HhZI6soaa5
 [libsodium.js](https://github.com/jedisct1/libsodium.js/) - ISC 许可证
 
 [pako](https://github.com/nodeca/pako) - MIT 许可证
+
