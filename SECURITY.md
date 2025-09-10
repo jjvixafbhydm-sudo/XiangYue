@@ -71,4 +71,4 @@ IV(16字节)、Nonce(12字节)，随机
 
 ### 漏洞报告
 
-[![漏洞报告](https://img.shields.io/badge/%E6%BC%8F%E6%B4%9E%E6%8A%A5%E5%91%8A-gold?style=for-the-badge&logo=github&&logoColor=black)](https://github.com/fzxx/XiangYue/issues)
+[![漏洞报告](https://img.shields.io/badge/%E6%BC%8F%E6%B4%9E%E6%8A%A5%E5%91%8A-gold?style=for-the-badge&logo=github&&logoColor=black)](https://github.com/fzxx/XiangYue/security/advisories/new)
